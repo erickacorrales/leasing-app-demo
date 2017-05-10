@@ -2,7 +2,8 @@
  * Created by erickacorrales on 2/5/17.
  */
 
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as tenantActions from '../../actions/tenantActions';
 
