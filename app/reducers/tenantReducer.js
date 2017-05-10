@@ -6,10 +6,8 @@ export default function courseReducer(state = [], action) {
 
   switch (action.type) {
 
-    case types.CREATE_TENANT :
-      return [...state,
-        Object.assign({}, action.tenant)
-      ];
+    case types.LOAD_TENANTS_SUCCESS :
+      return action.tenants;
 
     default:
       return state;
