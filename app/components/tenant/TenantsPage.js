@@ -6,6 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as tenantActions from '../../actions/tenantActions';
+import {bindActionCreators} from 'redux';
 
 class TenantsPage extends React.Component {
 
@@ -27,7 +28,7 @@ class TenantsPage extends React.Component {
   }
 
   onClickSave(){
-    this.props.dispatch(tenantActions.createTenant(this.state.tenant));
+    this.props.actions.createTenant(this.state.tenant);
   }
 
   tenantRow(tenant, index ){
@@ -55,8 +56,8 @@ class TenantsPage extends React.Component {
 }
 
 TenantsPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  tenants: PropTypes.array.isRequired
+  actions: PropTypes.object.isRequired,
+  tenants: PropTypes.array.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
@@ -65,5 +66,10 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(tenantActions, dispatch)
+  };
+}
 
-export default connect(mapStateToProps)(TenantsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(TenantsPage);
